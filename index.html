@@ -42,6 +42,8 @@ __isPrime(t, x) = if x^2 > t then true
     <p id="output" class="output"></p>
 
     <script src="src/codemirror.js"></script>
+    <script src="src/simple-mode.js"></script>
+    <script src="src/appl-alg-mode.js"></script>
     <script src="src/gwt.js"></script>
     <script src="src/appl-alg.js"></script>
     <script>
@@ -51,7 +53,8 @@ __isPrime(t, x) = if x^2 > t then true
 
         var editorEl = document.getElementById('editor');
         var editor = CodeMirror.fromTextArea(editorEl, {
-          lineNumbers: true
+          lineNumbers: true,
+          mode: 'appl-alg-mode'
         });
         var outputEl = document.getElementById('output');
 
