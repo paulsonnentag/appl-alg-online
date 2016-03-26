@@ -1,0 +1,73 @@
+html, body {
+    font-family: monospace;
+    margin: 0;
+    height: 100%;
+    background: #263238;
+}
+
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+textarea {
+    display: none;
+}
+
+.CodeMirror {
+    position: absolute;
+    top: 64px;
+    bottom: 100px;
+    right: 0;
+    left: 0;
+    height: auto;
+
+}
+
+.toolbar, .output {
+    background: #263238;
+    color: #fff;
+}
+
+.toolbar {
+    position: relative;
+    padding: 20px;
+    border-bottom: 1px solid #131e24;
+}
+
+.toolbar .btn {
+    position: absolute;
+    right: 20px;
+    top: 13px;
+
+}
+
+.toolbar h1 {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.btn {
+    font-size: 1.2em;
+    border: 0;
+    background-color: #80CBC4;
+    color: #fff;
+    padding: 8px;
+    min-width: 100px;
+    outline-color: #80CBC4;
+}
+
+.output {
+    border-top: 1px solid #131e24;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    margin: 0;
+    padding: 15px;
+    overflow: auto;
+}

@@ -3,11 +3,23 @@
   <head>
     <meta charset="UTF-8">
     <title>appl-alg-online</title>
+    <link rel="stylesheet" href="style/codemirror.css">
+    <link rel="stylesheet" href="style/material.css">
+    <link rel="stylesheet" href="style/main.css">
   </head>
   <body>
 
 
-    <textarea id="editor" style="width: 600px; height: 400px">main() = primes(50)
+
+
+    <div class="toolbar">
+      <h1>appl-alg-online</h1>
+      <button id="run" class="btn">run</button>
+    </div>
+
+
+
+    <textarea id="editor" class="editor">main() = primes(50)
 #------------------
 
 primes(N) = _primes(N, 2, [])
@@ -30,27 +42,23 @@ __isPrime(t, x) = if x^2 > t then true
 				       endif
 				  endif</textarea>
 
-
-    <br>
-    <button id="run">run</button>
-
-    <pre id="output"></pre>
+    <p id="output" class="output"></p>
 
 
+    <script src="src/codemirror.js"></script>
     <script src="src/gwt.js"></script>
     <script src="src/appl-alg.js"></script>
-
-
-
     <script>
 
       var editorEl = document.getElementById('editor');
+      var editor = CodeMirror.fromTextArea(editorEl, {
+        lineNumbers: true,
+        theme: 'material'
+      });
       var outputEl = document.getElementById('output');
 
 
       document.getElementById('run').addEventListener('click', function () {
-        console.log(editorEl.value);
-
         outputEl.innerText = applAlgExecute(editorEl.value);
       });
 
