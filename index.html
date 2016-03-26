@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>appl-alg-online</title>
+  </head>
+  <body>
+
+
+    <textarea id="editor" style="width: 600px; height: 400px">main() = primes(50)
+#------------------
+
+primes(N) = _primes(N, 2, [])
+
+_primes(N, t, p_list) = if t>N then p_list
+                        else
+                        	if _isPrime(t)=true then
+                        		_primes(N, t+1, t->p_list[length(p_list)])
+                        	else
+                        		_primes(N, t+1, p_list)
+                        	endif
+                        endif
+
+_isPrime(t) = __isPrime(t, 2)
+
+__isPrime(t, x) = if x^2 > t then true
+				  else if t%x = 0 then false
+				       else
+				          __isPrime(t, x+1)
+				       endif
+				  endif</textarea>
+
+
+    <br>
+    <button id="run">run</button>
+
+    <pre id="output"></pre>
+
+
+    <script src="src/gwt.js"></script>
+    <script src="src/appl-alg.js"></script>
+
+
+
+    <script>
+
+      var editorEl = document.getElementById('editor');
+      var outputEl = document.getElementById('output');
+
+
+      document.getElementById('run').addEventListener('click', function () {
+        console.log(editorEl.value);
+
+        outputEl.innerText = applAlgExecute(editorEl.value);
+      });
+
+    </script>
+
+  </body>
+</html>
