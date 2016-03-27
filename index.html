@@ -15,7 +15,7 @@
     </div>
 
 
-    <textarea id="editor" class="editor">main() = primes(50)
+    <textarea id="editor" class="editor">main() = primes(100)
 #------------------
 
 primes(N) = _primes(N, 2, [])
@@ -47,10 +47,11 @@ __isPrime(t, x) = if x^2 > t then true
     <script src="src/gwt.js"></script>
     <script src="src/appl-alg.js"></script>
     <script>
-
       (function () {
         'use strict';
 
+        var prevLineNumber = null;
+        var ERROR_LINENUMBER_REGEX = /((Parsing error in file)|(Runtime error in file)) \(line ([0-9]*?)\)/;
         var editorEl = document.getElementById('editor');
         var editor = CodeMirror.fromTextArea(editorEl, {
           lineNumbers: true,
@@ -59,9 +60,48 @@ __isPrime(t, x) = if x^2 > t then true
         var outputEl = document.getElementById('output');
 
         document.getElementById('run').addEventListener('click', function () {
-          outputEl.innerText = applAlgExecute(editor.getValue());
+          var line;
+          var result = applAlgExecute(editor.getValue());
+
+          // reset styling
+          outputEl.classList.remove('error');
+
+          if (prevLineNumber !== null) {
+            editor.getDoc().removeLineClass(prevLineNumber - 1, "background", "error-line");
+          }
+
+          if (isError(result)) {
+            outputEl.classList.add('error');
+
+            line = getLine(result);
+
+            if (line !== null || isNaN(line)) {
+              editor.getDoc().addLineClass(line - 1, "background", "error-line");
+            }
+
+            prevLineNumber = line;
+
+          } else {
+            prevLineNumber = null;
+          }
+
+          outputEl.innerText = result;
         });
 
+        function isError (result) {
+          return result.indexOf("Runtime error in file") == 0
+            || result.indexOf("Parsing error in file") == 0
+        }
+
+        function getLine (error) {
+          var match = error.match(ERROR_LINENUMBER_REGEX);
+
+          if (match) {
+            return parseInt(match[4]);
+          }
+
+          return null;
+        }
       }());
     </script>
 

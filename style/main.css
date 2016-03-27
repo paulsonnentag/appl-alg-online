@@ -58,6 +58,7 @@ textarea {
     padding: 8px;
     min-width: 100px;
     outline-color: #80CBC4;
+    border-radius: 3px;
 }
 
 .output {
@@ -70,4 +71,12 @@ textarea {
     margin: 0;
     padding: 15px;
     overflow: auto;
+}
+
+.output.error {
+    color: #d86b6b;
+}
+
+.error-line {
+    background-color: #d8c4c4;
 }
