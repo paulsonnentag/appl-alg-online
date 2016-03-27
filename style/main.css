@@ -20,7 +20,7 @@ textarea {
 .CodeMirror {
     position: absolute;
     top: 64px;
-    bottom: 100px;
+    bottom: 130px;
     right: 0;
     left: 0;
     height: auto;
@@ -67,14 +67,22 @@ textarea {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 100px;
+    height: 130px;
     margin: 0;
-    padding: 15px;
-    overflow: auto;
+    padding: 10px;
+    overflow: hidden;
 }
 
-.output.error {
+.inner-output.error {
     color: #d86b6b;
+}
+
+.inner-output {
+    border-radius: 3px;
+    height: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    overflow: scroll;
 }
 
 .error-line {

@@ -36,10 +36,12 @@ __isPrime(t, x) = if x^2 > t then true
 				       else
 				          __isPrime(t, x+1)
 				       endif
-				  endif
-</textarea>
+				  endif</textarea>
 
-    <p id="output" class="output"></p>
+    <div class="output">
+      <div class="inner-output" id="output"></div>
+    </div>
+
 
     <script src="src/codemirror.js"></script>
     <script src="src/simple-mode.js"></script>
