@@ -4,7 +4,7 @@ Transpiled appl-alg interpreter based on the implementation of Professor Dr. Fri
 **Features**
 * in browser editor
 * syntax highlighting
-* error higlighting
+* error highlighting
 
 **Todo**
 * support for file includes
