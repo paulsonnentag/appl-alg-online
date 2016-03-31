@@ -53,6 +53,7 @@ __isPrime(t, x) = if x^2 > t then true
         'use strict';
 
         var prevLineNumber = null;
+        var COMMENT_REGEX = /(\/\*([\s\S]*?)\*\/)|(\/\/(.*)$)/gm;
         var ERROR_LINENUMBER_REGEX = /((Parsing error in file)|(Runtime error in file)) \(line ([0-9]*?)\)/;
         var editorEl = document.getElementById('editor');
         var editor = CodeMirror.fromTextArea(editorEl, {
@@ -63,7 +64,12 @@ __isPrime(t, x) = if x^2 > t then true
 
         document.getElementById('run').addEventListener('click', function () {
           var line;
-          var result = applAlgExecute(editor.getValue());
+
+          var clean = removeComments(editor.getValue());
+
+          console.log(clean);
+
+          var result = applAlgExecute(clean);
 
           // reset styling
           outputEl.classList.remove('error');
@@ -89,6 +95,17 @@ __isPrime(t, x) = if x^2 > t then true
 
           outputEl.innerText = result;
         });
+
+        function removeComments (str) {
+          return str.replace(COMMENT_REGEX, function (str) {
+
+            if(str.indexOf('\n') == -1) {
+              return '';
+            }
+
+            return [""].concat(str.split('\n')).join("\n#").slice(1);
+          });
+        }
 
         function isError (result) {
           return result.indexOf("Runtime error in file") == 0

@@ -8,8 +8,14 @@ CodeMirror.defineSimpleMode("appl-alg-mode", {
     {regex: "if|then|else|endif", token: "keyword"},
     {regex: "true|false", token: "atom"},
     {regex: "#.*", token: "comment"},
+    {regex: /\/\*/, token: "comment", next: "comment"},
     {regex: "{()[]{},}", token:"punctuation"},
     {regex: "'.*?'", token: "string"},
     {regex: "[a-zA-Z_][a-zA-Z_0-9]*", token:"variable-2"}
-  ]
+  ],
+
+  comment: [
+    {regex: /.*?\*\//, token: "comment", next: "start"},
+    {regex: /.*/, token: "comment"}
+  ],
 });
