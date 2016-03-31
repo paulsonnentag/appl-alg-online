@@ -59,7 +59,7 @@ __isPrime(t, x) = if x^2 > t then true
         'use strict';
 
         var prevLineNumber = null;
-        var COMMENT_REGEX = /(\/\*([\s\S]*?)\*\/)|(\/\/(.*)$)/gm;
+        var COMMENT_REGEX = /(\/\*([\s\S]*?)\*\/)/gm;
         var ERROR_LINENUMBER_REGEX = /((Parsing error in file)|(Runtime error in file)) \(line ([0-9]*?)\)/;
         var editorEl = document.getElementById('editor');
         var editor = CodeMirror.fromTextArea(editorEl, {
@@ -77,7 +77,8 @@ __isPrime(t, x) = if x^2 > t then true
 
         function run () {
           var line;
-          var result = applAlgExecute(removeComments(editor.getValue()));
+          var clean = removeComments(editor.getValue());
+          var result = applAlgExecute(clean);
 
           // reset styling
           outputEl.classList.remove('error');
