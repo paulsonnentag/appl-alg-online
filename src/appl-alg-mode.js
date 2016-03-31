@@ -5,7 +5,7 @@
 CodeMirror.defineSimpleMode("appl-alg-mode", {
   // The start state contains the rules that are intially used
   start: [
-    {regex: "if|then|else|endif", token: "keyword"},
+    {regex: "if|then|else|endif|or|and", token: "keyword"},
     {regex: "true|false", token: "atom"},
     {regex: "#.*", token: "comment"},
     {regex: /\/\*/, token: "comment", next: "comment"},
