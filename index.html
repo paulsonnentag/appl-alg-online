@@ -11,7 +11,14 @@
 
     <div class="toolbar">
       <h1>appl-alg-online</h1>
-      <button id="run" class="btn">run</button>
+
+      <div class="controls">
+        <button id="run" class="btn">
+          run
+        </button>
+
+        <div class="hint"><i>Ctrl + Enter</i></div>
+      </div>
     </div>
 
 
@@ -42,7 +49,6 @@ __isPrime(t, x) = if x^2 > t then true
       <div class="inner-output" id="output"></div>
     </div>
 
-
     <script src="src/codemirror.js"></script>
     <script src="src/simple-mode.js"></script>
     <script src="src/appl-alg-mode.js"></script>
@@ -62,14 +68,16 @@ __isPrime(t, x) = if x^2 > t then true
         });
         var outputEl = document.getElementById('output');
 
-        document.getElementById('run').addEventListener('click', function () {
+        editor.setOption("extraKeys", {
+          "Ctrl-Enter": run,
+          "Cmd-Enter": run
+        });
+
+        document.getElementById('run').addEventListener('click', run);
+
+        function run () {
           var line;
-
-          var clean = removeComments(editor.getValue());
-
-          console.log(clean);
-
-          var result = applAlgExecute(clean);
+          var result = applAlgExecute(removeComments(editor.getValue()));
 
           // reset styling
           outputEl.classList.remove('error');
@@ -94,7 +102,7 @@ __isPrime(t, x) = if x^2 > t then true
           }
 
           outputEl.innerText = result;
-        });
+        }
 
         function removeComments (str) {
           return str.replace(COMMENT_REGEX, function (str) {

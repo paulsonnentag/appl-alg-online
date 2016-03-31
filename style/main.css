@@ -19,7 +19,7 @@ textarea {
 
 .CodeMirror {
     position: absolute;
-    top: 64px;
+    top: 70px;
     bottom: 130px;
     right: 0;
     left: 0;
@@ -34,20 +34,20 @@ textarea {
 
 .toolbar {
     position: relative;
-    padding: 20px;
     border-bottom: 1px solid #131e24;
 }
 
-.toolbar .btn {
+.toolbar .controls {
     position: absolute;
     right: 20px;
     top: 13px;
-
 }
 
 .toolbar h1 {
     font-size: 1.5em;
     margin: 0;
+    line-height: 70px;
+    padding-left: 20px;
 }
 
 .btn {
@@ -60,6 +60,14 @@ textarea {
     outline-color: #80CBC4;
     border-radius: 3px;
 }
+
+.hint {
+    font-size: 0.7em;
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+}
+
 
 .output {
     border-top: 1px solid #131e24;
