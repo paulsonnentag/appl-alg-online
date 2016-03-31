@@ -67,6 +67,11 @@ __isPrime(t, x) = if x^2 > t then true
           mode: 'appl-alg-mode'
         });
         var outputEl = document.getElementById('output');
+        var value = localStorage.getItem('value');
+
+        if (value) {
+          editor.setValue(value);
+        }
 
         editor.setOption("extraKeys", {
           "Ctrl-Enter": run,
@@ -130,6 +135,10 @@ __isPrime(t, x) = if x^2 > t then true
 
           return null;
         }
+
+        setInterval(function () {
+          localStorage.setItem('value', editor.getValue());
+        }, 1500);
       }());
     </script>
 
